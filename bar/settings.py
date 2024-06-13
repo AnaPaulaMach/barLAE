@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-$ov=ea*lpfn3rco+8&ehd-dzla*nl9s0gqpn!p&s(5spw1z^8s
 # SECURITY WARNING: don't run with debug turned on in production! V16
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['analae.pythonanywhere.com']
 
 
 # Application definition
