@@ -1,0 +1,54 @@
+{% extends 'food/base.html' %}
+
+{% block title %}Pedido{% endblock %}
+
+{% load static %}
+
+{% block content %} <!-- usa boots -->
+
+<div class="container-fluid m-4">
+    {% if user.is_authenticated %}
+        <h2>Bienvenido {{ user.username }}</h2>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <h2>Pedido</h2>
+            <div class="row">
+                <div class="col-md-3" id="nombre">
+                    <h3>Nombre</h3>
+                </div>
+                <div class="col-md-3" id="tamaño">
+                    <h3>Tamaño</h3>
+                </div>
+                <div class="col-md-3" id="precio">
+                    <h3>Precio</h3>
+                </div>
+                <div class="col-md-1" id="rm"> <!-- rm remove buttons -->
+
+                </div>
+            </div>
+            <h2 id="total">Total:</h2>
+        </div>
+        <div class="col-md-5 mt-4"> <!-- aqui va estar lo del comentario -->
+            <h2 class="mb-4">Comentario</h2>
+            <textarea name="Comentario" id="Comentario" cols="40" rows="5"></textarea>
+
+            {% if user.is_authenticated %} <!-- Solo si inicio sesion se muestra boton pedir -->
+                
+            <div class="ml-auto m-4">
+                <button type="submit" class="btn-success" onclick="pedido()">Enviar</button>
+            </div>
+
+            {% else %}
+
+            <div class="ml-auto m-4">
+                <a href="{% url 'food:login' %}">Ingresar</a>
+            </div>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script src="{% static 'food/js/carrito.js' %}"></script> 
+{% endblock %}
+

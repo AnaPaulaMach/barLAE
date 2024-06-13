@@ -1,0 +1,42 @@
+{% extends 'food/base.html' %}
+
+{% block title %}Registrarse{% endblock %}
+
+{% load static %}
+
+{% block content %} 
+
+    <div class="container-fluid p-5">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 p-5 bg-dark text-light text-center">
+                <h3>Registrarse</h3>
+                <a href="{% url 'food:login' %}" class="p-2">Ingresar</a>
+                <form method="POST">
+                    {% csrf_token %}    <!-- seguridad -->
+
+                    {% for field in form %}
+                    <div class="form-group"> <!-- 2divs 1labels 2input -->
+                        <div>
+                            {{ field.label_tag }}
+                        </div>
+                        <div>
+                            {{ field }}
+                        </div>
+                        {% if field.help_text %}
+                            <small style="color: grey;">{{ field.help_text }}</small>
+                        {% endif %}
+                        
+                    </div>
+                    {% endfor %}
+                    {% for error in form.errors %}
+                            <small style="color: red;">{{ error }}</small>
+                        {% endfor %}
+                    <button type="submit" class="btn-info">Registrarse</button>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+{% endblock %}

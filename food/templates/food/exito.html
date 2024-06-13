@@ -1,0 +1,19 @@
+<!-- Success = Exito -->
+{% extends 'food/base.html' %}
+
+{% block title %}Exito{% endblock %}
+
+{% load static %}
+
+{% block content %} 
+    <div class="container-fluid">
+        <h2>Su orden fue recibida</h2>
+        <h4>Numero de pedido: {{ pedidoNum }}</h4>
+        <h4>Tu pedido</h4>
+        {% for item in items %}
+        <h4>{{ item.nombre }} {{ item.size }} {{ item.precio }}</h4>
+        {% endfor %}
+        <h4>Total: {{ cuenta }}</h4>
+        <h4>Si quieres modificar la orden, por favor llama a un mozo</h4>
+    </div>
+{% endblock %}

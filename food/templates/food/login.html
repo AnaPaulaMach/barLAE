@@ -1,0 +1,38 @@
+{% extends 'food/base.html' %}
+
+{% block title %}Ingresar{% endblock %}
+
+{% load static %}
+
+{% block content %} 
+
+    <div class="container-fluid p-5">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 p-5 bg-dark text-light text-center">
+                <h3>Ingresar</h3>
+                <a href="{% url 'food:signup' %}" class="p-2">Registrarse</a>
+                <form method="POST" class="pt-2">
+                    {% csrf_token %}    <!-- seguridad -->
+
+                    <div class="form-group"> 
+                        <input type="text" name="username" placeholder="Usuario">
+                    </div>
+                    <div class="form-group"> 
+                        <input type="password" name="password" placeholder="********">
+                    </div>
+                    <button type="submit" class="btn-info">Ingresar</button>
+                    {% if messages %}
+                        <ul class="pt-2 text-center">
+                            {% for msg in messages%}
+                            <li style="color: red;">{{ msg }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+{% endblock %}

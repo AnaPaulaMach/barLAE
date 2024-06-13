@@ -1,0 +1,87 @@
+/* Cuando en el codigo ponemos class = algo
+pasamos ese algo que esta definido aqui */
+
+.logo {
+    margin-bottom: 5px; /* margen bajo elementos barra */
+}
+
+.home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../img/home.jpeg");
+    background-size: cover;
+    background-position: center center;
+    z-index: -1;
+    background-repeat: no-repeat;
+}
+
+.title {
+    margin: 50px;
+    text-align: center;
+}
+
+.picture {
+    width: 200px;
+    border-radius: 50%; /* Forma Circular */
+    height: 150px;
+}
+
+#cart {
+    float:right;
+}
+
+.pedidos{
+    position: relative;
+    top: 100px;
+}
+
+.icon-margin {
+    margin-left: 12px; /* Icono Usuario: Ajusta este valor para encontrar el margen perfecto del */
+}
+
+.del {                           /* Boton borrar */
+    position: absolute;
+    right: 30px;
+    background-color: coral;
+    color: white;  /* Usar un color de texto más contrastante */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;  /* Hacer el botón circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;  /* Añadir cursor pointer para indicar que es clickeable */
+    transition: background-color 0.3s, transform 0.3s;  /* Añadir transiciones */
+}
+
+.del:hover, .del:focus {  /* Efectos de hover (cambia cuando se pasa el cursor) y focus */
+    background-color: darkred;
+    transform: scale(1.1);  /* Agrandar ligeramente al hacer hover */
+}
+
+.del::before {  /* Usar pseudo-elemento para añadir un ícono */
+    content: "\2716";  /* Unicode para una cruz */
+    font-size: 16px;  /* Ajustar tamaño del ícono */
+    line-height: 1;  /* Alinear verticalmente */
+}
+
+
+li{
+    display: flex;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+/* Buscar bien los ids final v11 min10 aprox
+#id_username{
+    background-color: aquamarine;
+}
+*/

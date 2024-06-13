@@ -1,0 +1,49 @@
+{% extends 'food/base.html' %}
+
+<!-- Este seria el nombre de la pestania -->
+{% block title %} Bebidas {% endblock %}  
+
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <h2 class="title">Nuestras Bebidas</h2>
+                <div class="row">
+                    {% for bebida in bebidas %}
+                    <div class="col-md-4 p-4">
+                        <div class="hamburguesa-item">
+                            <img class="picture" src="{{ bebida.bImagen }}" alt="{{ hamburguesa.nombre }}">
+                            <h4 class="pt-3" id="beb{{bebida.id}}">{{ bebida.nombre }}</h4>
+                            <div class="form-check-inline"> <!-- Este es para marcar cada precio -->
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="bebida{{ bebida.id }}" value="{{ bebida.precioC }}" checked>
+                                    C: ${{ bebida.precioC }}
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="bebida{{ bebida.id }}" value="{{ bebida.precioG }}">
+                                    G: ${{ bebida.precioG }}
+                                </label>
+                            </div>
+                            <div>
+                                <button class="btn btn-info mt-3" onclick="addBebida('{{ bebida.id }}')">Añadir al carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-4 pedidos">
+                <div class="bg-dark p-4 rounded text-light"> <!-- fondo color -->
+                <h2 class="text-center">Pedido</h2> <!-- Para que vea el pedido a la derecha-->
+                <ul id="bcarrito"> </ul>
+                <h4 class="text-right" id="btotal">Total: $0</h4>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'food/js/bpedido.js' %}"></script> <!-- order = pedido -->
+{% endblock %}
