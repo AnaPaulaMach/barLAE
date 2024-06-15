@@ -25,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$ov=ea*lpfn3rco+8&ehd-dzla*nl9s0gqpn!p&s(5spw1z^8s'
 
 # SECURITY WARNING: don't run with debug turned on in production! V16
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['analae.pythonanywhere.com']
+#ALLOWED_HOSTS = ['analae.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','analae.pythonanywhere.com']
 
 
 # Application definition
