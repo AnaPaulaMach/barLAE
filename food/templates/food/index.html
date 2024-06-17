@@ -1,11 +1,53 @@
 {% extends 'food/base.html' %}
 
-<!-- Este seria el nombre de la pestania -->
-{% block title %} Menu {% endblock %}
+<!-- Este sería el nombre de la pestaña -->
+{% block title %}Inicio{% endblock %}
+
+{% load static %}
 
 {% block content %}
-    <h1>Menu</h1>
-    <div id="test"> </div>
-
-    <div class="home"> </div>
+<div class="container my-5">
+    <h1 class="text-center">Bienvenido a LAE Urban Burgers</h1>
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card text-center shadow-card">
+                <div class="card-body">
+                    <h5 class="card-title">Menú del Bar</h5>
+                    <p class="card-text">Explora nuestro delicioso menú.</p>
+                    <a href="{% url 'food:hamburguesas' %}" class="btn btn-coral mb-2">Ver Hamburguesas</a>
+                    <a href="{% url 'food:bebidas' %}" class="btn btn-coral">Ver Bebidas</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center shadow-card">
+                <div class="card-body">
+                    <h5 class="card-title">Descuentos</h5>
+                    <p class="card-text">¡Aprovecha nuestras ofertas especiales!</p>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'food:descuentos' %}" class="btn btn-coral">Ver Descuentos</a>
+                    {% else %}
+                    <a href="{% url 'food:login' %}" class="btn btn-coral">Ingresar</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center shadow-card">
+                <div class="card-body">
+                    <h5 class="card-title">Historial de Pedidos</h5>
+                    <p class="card-text">Revisa tus pedidos anteriores.</p>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'food:historial' %}" class="btn btn-coral">Ver Historial</a>
+                    {% else %}
+                    <a href="{% url 'food:login' %}" class="btn btn-coral">Ingresar</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Agrega la imagen del logo -->
+<img src="https://res.cloudinary.com/dwrlz7fdi/image/upload/v1718522832/WhatsApp_Image_2024-06-11_at_11.22.10_PM_preview_rev_1_wee5ii.png" alt="Logo" class="logoMenu">
 {% endblock %}
+

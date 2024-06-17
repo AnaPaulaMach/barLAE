@@ -51,6 +51,7 @@ var note = document.querySelector('#Comentario');
 
 function pedido(){
     var msg = note.value;
+    var mesaNum = document.getElementById('mesa-input').value; // Obtener el número de mesa seleccionado
     var pedidos = localStorage.getItem('pedidos');
     var total = localStorage.getItem('total');
 
@@ -59,14 +60,19 @@ function pedido(){
     pedidoData['pedidos'] = pedidos;
     pedidoData['note'] = msg;
     pedidoData['cuenta'] = total;
-    $.ajax({                    //Ajax es una técnica web que actualiza partes de una página sin recargarla.
+    pedidoData['mesa'] = mesaNum; // Agregar el número de mesa al objeto de datos del pedido
+
+    $.ajax({
         url: ur,
         type: "POST",
         data: pedidoData,
         success: function(data){
-            window.location.replace('/food/exito/')
+            window.location.replace('/food/exito/');
             localStorage.setItem('pedidos', JSON.stringify([]));
             localStorage.setItem('total', 0);
         }
-    })
+    });
 }
+
+
+

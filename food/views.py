@@ -8,6 +8,7 @@ from .forms import NewUserForm
 from django.contrib import messages
 import random
 import json
+from django.contrib.auth.decorators import login_required
 
 def randomOrderNumber(length): # El numero de orden sera random
     sample  = 'ABCDEFGH0123456789'
@@ -116,3 +117,15 @@ def logIn(request):
 def logOut(request):
     logout(request)
     return redirect('index')
+
+def descuentos(request):
+    # Lógica para la vista de descuentos
+    return render(request, 'food/descuentos.html')
+
+
+def historial(request):
+    # Obtener todos los pedidos del usuario actual
+    pedidos = Pedido.objects.filter(cliente=request.user).order_by('-date')
+
+    # Pasar los pedidos a la plantilla
+    return render(request, 'food/historial.html', {'pedidos': pedidos})

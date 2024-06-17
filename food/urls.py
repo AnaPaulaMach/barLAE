@@ -13,5 +13,7 @@ urlpatterns = [
     path('login/', views.logIn, name="login"),
     path('logout/', views.logOut, name="logout"),
     path('', views.index, name='index'), #chequear
+    path('descuentos/', views.descuentos, name='descuentos'),
+    path('historial/', views.historial, name='historial'),
 ]
 

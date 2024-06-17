@@ -1,19 +1,34 @@
-<!-- Success = Exito -->
+<!-- Success = Éxito  usa Bootstrap-->
 {% extends 'food/base.html' %}
 
-{% block title %}Exito{% endblock %}
+{% block title %}Éxito{% endblock %}
 
 {% load static %}
 
-{% block content %} 
-    <div class="container-fluid">
-        <h2>Su orden fue recibida</h2>
-        <h4>Numero de pedido: {{ pedidoNum }}</h4>
-        <h4>Tu pedido</h4>
-        {% for item in items %}
-        <h4>{{ item.nombre }} {{ item.size }} {{ item.precio }}</h4>
-        {% endfor %}
-        <h4>Total: {{ cuenta }}</h4>
-        <h4>Si quieres modificar la orden, por favor llama a un mozo</h4>
+{% block content %}
+<div class="container my-5">
+    <div class="card"> <!-- card para organizar diferencia titulo header de cuerpo body -->
+        <div class="card-header text-center">
+            <h2>Su orden fue recibida</h2>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-success text-center" role="alert">
+                <h4 class="alert-heading">Número de pedido: {{ pedidoNum }}</h4>
+            </div>
+            <h4 class="text-center">Tu pedido</h4>
+            <ul class="list-group mb-3">
+                {% for item in items %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ item.nombre }} ({{ item.size }})</span>
+                    <span class="badge badge-primary badge-pill">${{ item.precio }} </span>
+                </li>
+                {% endfor %}
+            </ul>
+            <h4 class="text-right">Total: <span class="text-success">${{ cuenta }} </span></h4>
+            <div class="alert alert-warning text-center mt-4" role="alert">
+                Si quieres modificar la orden, por favor llama a un mozo
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}

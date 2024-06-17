@@ -3,6 +3,8 @@ pasamos ese algo que esta definido aqui */
 
 .logo {
     margin-bottom: 5px; /* margen bajo elementos barra */
+    width: 60px; /* Ancho de la imagen */
+    height: auto; /* Altura automática para mantener la proporción */
 }
 
 .home {
@@ -85,3 +87,64 @@ li{
     background-color: aquamarine;
 }
 */
+
+
+
+
+
+/* Colores personalizados */
+.btn-coral {
+    background-color: #FF6F61; /* Color coral */
+    color: white;
+    border: none;
+}
+
+.btn-coral:hover {
+    background-color: #FF4A3A; /* Color coral más oscuro */
+    color: white;
+}
+
+/* Ajustes adicionales */
+.card {
+    border: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.shadow-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.card-title {
+    font-family: 'Helvetica', sans-serif; /* Fuente profesional */
+}
+
+.card-body p {
+    font-family: 'Helvetica', sans-serif; /* Fuente profesional */
+}
+
+.container {
+    max-width: 960px;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.logoMenu {
+    position: fixed;
+    bottom: 20px; /* Distancia desde la parte inferior */
+    right: 20px; /* Distancia desde el lado derecho */
+    width: 100px; /* Ancho de la imagen */
+    height: auto; /* Altura automática para mantener la proporción */
+    z-index: 999; /* Asegura que esté sobre otros elementos */
+    opacity: 0.8; /* Opacidad para hacerla menos prominente */
+}

@@ -28,6 +28,7 @@ class Pedido(models.Model):
     cuenta  = models.DecimalField(max_digits=12, decimal_places = 2)
     date    = models.DateTimeField(auto_now_add=True, blank=True)  # Dia creacion orden
     note    = models.TextField(blank=True, null=True)
+    mesa    = models.IntegerField(default=0)
 
 
 # No podemos aniadir todos los items a Pedido pq no sabemos la cantidad de item que
