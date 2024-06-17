@@ -43,7 +43,7 @@
                 <h2 class="mb-4">Seleccione la mesa</h2>
                 <select id="mesa-input" name="mesa" class="form-select">
                     <option value="">Seleccione una mesa</option>
-                    {% for mesa_num in mesas %}
+                    {% for mesa_num in mesas %}  <!-- en views pasa la cant de mesas -->
                         <option value="{{ mesa_num }}">{{ mesa_num }}</option>
                     {% endfor %}
                 </select>

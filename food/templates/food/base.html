@@ -24,7 +24,7 @@
         <!-- Brand/logo -->
         <a class="navbar-brand" href="#">
             <!-- El link ese de abajo es el icono de la barra de arriba, se puede aniadir margen-->
-          <img src=https://res.cloudinary.com/dwrlz7fdi/image/upload/v1718523590/eb22272d-2e78-4600-95e5-2855490e558b.png class="logo">
+          <img src=https://res.cloudinary.com/dwrlz7fdi/image/upload/c_crop,w_500,h_400/v1718608372/LAE_URBAN_BURGERS_2_hgwi4r.png class="logo">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynav" aria-controls="mynav"> <!-- cositas para hacerlo responsive-->
@@ -56,11 +56,15 @@
           </li>
           {% if user.is_authenticated %} <!-- v12 -->
           <li class="nav-item">
-            <a href="{% url 'food:logout' %}" class="nav-link {% if active_link == 'logout' %} active {% endif %}"> 
-              <img class="icon-margin" src="https://img.icons8.com/?size=35&id=rrtYnzKMTlUr&format=png&color=000000">
-              <br>Salir
-            </a> 
-          </li>
+            <a href="{% url 'food:logout' %}" class="nav-link {% if active_link == 'logout' %} active {% endif %}">
+                <div class="logout-container text-center">
+                    <img class="icon-margin-salir" src="https://img.icons8.com/?size=100&id=8119&format=png&color=000000" alt="Salir">
+                    <div class="logout-text">Salir</div>
+                </div>
+            </a>
+        </li>
+        
+        
           {% else %}
           <li class="nav-item">
             <a href="{% url 'food:login' %}" class="nav-link {% if active_link == 'login' %} active {% endif %}"> <!-- v12 -->
@@ -88,6 +92,9 @@
 
 <!-- Link para nuestro archivo JavaScript -->
 <script src="{% static 'food/js/main.js' %}"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7x1g1z1zRxD2pG/t8czP+6wnEq4+5B/HQU+" crossorigin="anonymous">
+
 
 
 </body>

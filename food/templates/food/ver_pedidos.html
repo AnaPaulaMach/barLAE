@@ -1,0 +1,67 @@
+{% extends 'food/base.html' %}
+
+{% block title %}Ver Pedidos{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center">Pedidos</h1>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Número de Pedido</th>
+                        <th>Cliente</th>
+                        <th>Mesa</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th> <!-- Agregamos una nueva columna para las acciones -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterar sobre los pedidos activos -->
+                    {% for pedido in pedidos_activos %}
+                    <tr>
+                        <td>{{ pedido.numero }}</td>
+                        <td>{{ pedido.cliente }}</td>
+                        <td>{{ pedido.mesa }}</td>
+                        <td>${{ pedido.cuenta }}</td>
+                        <td>{{ pedido.estado }}</td>
+                        <td>{{ pedido.date }}</td>
+                        <td>
+                            <form action="{% url 'food:finalizar_pedido' pedido.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Finalizar</button>
+                            </form>
+                        </td>                        
+                    </tr>
+                    {% empty %}
+                    <!-- Mensaje si no hay pedidos activos -->
+                    <tr>
+                        <td colspan="7">No hay pedidos activos.</td>
+                    </tr>
+                    {% endfor %}
+                    <!-- Iterar sobre los pedidos finalizados -->
+                    {% for pedido in pedidos_finalizados %}
+                    <tr>
+                        <td>{{ pedido.numero }}</td>
+                        <td>{{ pedido.cliente }}</td>
+                        <td>{{ pedido.mesa }}</td>
+                        <td>${{ pedido.cuenta }}</td>
+                        <td>{{ pedido.estado }}</td>
+                        <td>{{ pedido.date }}</td>
+                        <td></td> <!-- No hay acciones para los pedidos finalizados -->
+                    </tr>
+                    {% empty %}
+                    <!-- Mensaje si no hay pedidos finalizados -->
+                    <tr>
+                        <td colspan="7">No hay pedidos finalizados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

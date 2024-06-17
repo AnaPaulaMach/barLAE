@@ -8,21 +8,25 @@
     <h1 class="text-center">Historial de Pedidos</h1>
     <div class="row mt-5">
         <div class="col-md-12">
-            <table class="table">
-                <thead>
+            <table class="table"> <!-- Inicia tabla -->
+                <thead> <!-- Define el encabezado de la tabla-->
                     <tr>
-                        <th>Número de Pedido</th>
+                        <th>Número de Pedido</th> <!-- Define Un encabezado -->
                         <th>Fecha</th>
+                        <th>Mesa</th>
                         <th>Total</th>
+                        <th>Estado</th>
                         <th>Detalles</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> <!-- Cuerpo de la tabla -->
                     {% for pedido in pedidos %}
-                    <tr>
+                    <tr>                            <!-- Define una fila de la tabla -->
                         <td>{{ pedido.numero }}</td>
                         <td>{{ pedido.date }}</td>
-                        <td>${{ pedido.cuenta }}</td>
+                        <td>{{ pedido.mesa }}</td>
+                        <td>${{ pedido.cuenta }}</td>  <!-- td define datos va dentro de un tr -->
+                        <td>{{ pedido.estado }}</td>
                         <td>
                             <a href="#" class="btn btn-primary ver-detalles" data-pedido="{{ pedido.id }}">Ver Detalles</a>
                             <div id="detalles-{{ pedido.id }}" class="detalles" style="display: none;">
@@ -32,12 +36,15 @@
                                     <li>{{ item.nombre }} - {{ item.precio }}</li>
                                     {% endfor %}
                                 </ul>
+                                {% if pedido.note %}
+                                <p><strong>Nota:</strong> {{ pedido.note }}</p>
+                                {% endif %}
                             </div>
                         </td>
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="4">No hay pedidos registrados.</td>
+                        <td colspan="6">No hay pedidos registrados.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

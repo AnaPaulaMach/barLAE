@@ -3,7 +3,7 @@ pasamos ese algo que esta definido aqui */
 
 .logo {
     margin-bottom: 5px; /* margen bajo elementos barra */
-    width: 60px; /* Ancho de la imagen */
+    width: 65px; /* Ancho de la imagen */
     height: auto; /* Altura automática para mantener la proporción */
 }
 
@@ -43,6 +43,7 @@ pasamos ese algo que esta definido aqui */
 .icon-margin {
     margin-left: 12px; /* Icono Usuario: Ajusta este valor para encontrar el margen perfecto del */
 }
+
 
 .del {                           /* Boton borrar */
     position: absolute;
@@ -147,4 +148,32 @@ li{
     height: auto; /* Altura automática para mantener la proporción */
     z-index: 999; /* Asegura que esté sobre otros elementos */
     opacity: 0.8; /* Opacidad para hacerla menos prominente */
+}
+
+.alert-info {
+    border-color: #00c7c7; /* Light blue border */
+    font-size: 16px; /* Adjust font size */
+}
+
+.alert-info p {
+    color: #333; /* Darker text color */
+}
+
+
+.logout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center children horizontally */
+    text-align: center; /* Center text */
+}
+
+.icon-margin-salir {
+    margin-left: 12px; /* Icono Usuario: Ajusta este valor para encontrar el margen perfecto del */
+    width: 40px; /* Ancho de la imagen */
+    height: auto; /* Altura automática para mantener la proporción */
+}
+
+.logout-text {
+    margin-top: 8px; /* Space between icon and text */
+    line-height: normal; /* Reset line-height */
 }

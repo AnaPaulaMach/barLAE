@@ -1,4 +1,3 @@
-<!-- Success = Éxito  usa Bootstrap-->
 {% extends 'food/base.html' %}
 
 {% block title %}Éxito{% endblock %}
@@ -7,26 +6,61 @@
 
 {% block content %}
 <div class="container my-5">
-    <div class="card"> <!-- card para organizar diferencia titulo header de cuerpo body -->
-        <div class="card-header text-center">
-            <h2>Su orden fue recibida</h2>
-        </div>
-        <div class="card-body">
-            <div class="alert alert-success text-center" role="alert">
-                <h4 class="alert-heading">Número de pedido: {{ pedidoNum }}</h4>
-            </div>
-            <h4 class="text-center">Tu pedido</h4>
-            <ul class="list-group mb-3">
-                {% for item in items %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span>{{ item.nombre }} ({{ item.size }})</span>
-                    <span class="badge badge-primary badge-pill">${{ item.precio }} </span>
-                </li>
-                {% endfor %}
-            </ul>
-            <h4 class="text-right">Total: <span class="text-success">${{ cuenta }} </span></h4>
-            <div class="alert alert-warning text-center mt-4" role="alert">
-                Si quieres modificar la orden, por favor llama a un mozo
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Su orden fue recibida</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-info text-center" role="alert">
+                                <p class="mb-0">Mesa: {{ pedido.mesa }}</p>
+                                <p class="mb-0">Pedido: {{ pedido.numero }}</p>
+                            </div>
+
+                            {% if pedido.estado == 'activo' %}
+                            <div class="alert alert-success text-center" role="alert">
+                                <p class="mb-0">Estado: {{ pedido.estado }}</p>
+                            </div>
+                            {% else %}
+                            <div class="alert alert-danger text-center" role="alert">
+                                <p class="mb-0">Estado: {{ pedido.estado }}</p>
+                            </div>
+                            {% endif %}
+
+                            {% if pedido.note %}
+                            <div class="alert alert-info text-center" role="alert">
+                                <p class="mb-0">Comentario: {{ pedido.note }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="text-center">Tu pedido</h4>
+                            <ul class="list-group mb-3">
+                                {% for item in items %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>{{ item.nombre }} ({{ item.size }})</span>
+                                    <span class="badge badge-primary badge-pill">${{ item.precio }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <h4 class="text-right">Total: <span class="text-success">${{ pedido.cuenta }}</span></h4>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <a href="{% url 'food:index' %}" class="btn btn-primary btn-block">Volver al menú</a>
+                        </div>
+                    
+                    </div>
+
+                    <div class="alert alert-warning text-center mt-4" role="alert">
+                        Si quieres modificar la orden, por favor llama a un mozo.
+                    </div>
+                </div>
             </div>
         </div>
     </div>

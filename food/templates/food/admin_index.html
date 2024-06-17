@@ -1,0 +1,52 @@
+<!-- Con mas colores para que se diferencie del de usuario -->
+{% extends 'food/base.html' %}
+
+{% block title %}Panel de Administración{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center">Bienvenido al Panel de Administración</h1>
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card text-center shadow-card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Gestión de Pedidos</h5>
+                    <p class="card-text">Visualiza y gestiona todos los pedidos realizados.</p>
+                    <a href="{% url 'food:ver_pedidos' %}" class="btn btn-light mb-2">Ver Pedidos</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center shadow-card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Gestión de Descuentos</h5>
+                    <p class="card-text">Administra las ofertas especiales disponibles.</p>
+                    <a href="{% url 'food:gestionar_descuentos' %}" class="btn btn-light mb-2">Gestionar Descuentos</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center shadow-card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Gestión de Clientes</h5>
+                    <p class="card-text">Consulta y administra la lista de clientes registrados.</p>
+                    <a href="{% url 'food:ver_clientes' %}" class="btn btn-light mb-2">Ver Clientes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center shadow-card bg-warning text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Solicitudes de Modificación</h5>
+                    <p class="card-text">Revisa y gestiona las solicitudes de modificación de pedidos.</p>
+                    <a href="{% url 'food:ver_solicitudes_modificacion' %}" class="btn btn-dark mb-2">Ver Solicitudes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Agrega la imagen del logo -->
+<img src="https://res.cloudinary.com/dwrlz7fdi/image/upload/v1718522832/WhatsApp_Image_2024-06-11_at_11.22.10_PM_preview_rev_1_wee5ii.png" alt="Logo" class="logoMenu">
+{% endblock %}

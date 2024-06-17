@@ -1,0 +1,41 @@
+{% extends 'food/base.html' %}
+
+{% block title %}Ver Clientes{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center">Clientes Registrados</h1>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Cantidad de Pedidos</th>  <!-- Separar activos de finalizados? no pude-->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes %}
+<tr>
+    <td>{{ cliente.id }}</td>
+    <td>{{ cliente.username }}</td>
+    <td>{{ cliente.last_name }}</td>
+    <td>{{ cliente.first_name }}</td>
+    <td>{{ cliente.email }}</td>
+    <td>{{ cliente.cantidad_pedidos }}</td> <!-- Mostrar la cantidad de pedidos del cliente -->
+</tr>
+{% empty %}
+<tr>
+    <td colspan="6">No hay clientes registrados.</td>
+</tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
