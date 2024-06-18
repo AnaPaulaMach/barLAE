@@ -4,9 +4,11 @@ var precio = document.querySelector("#precio");
 var cuenta = document.querySelector("#total"); //Pq ya existe otra llamada total en shoppingcart
 var rm = document.querySelector("#rm"); // remove buttons
 
+
 function shoppingCart() {
     var pedidos = JSON.parse(localStorage.getItem('pedidos'));
     var total = localStorage.getItem('total');
+    console.log(total);
     var carritoSize = pedidos.length;
 
     nombre.innerHTML = '<h3>Nombre</h3>';
@@ -33,7 +35,6 @@ function removeItem(n){
 
     total = Number(total) - Number(pedidos[n][2]);
     pedidos.splice(n,1); // 1 el numero de items que queremos remover
-
     //Updating number of items in shopping Cart
     var carrito = document.querySelector("#carrito");
     carrito.innerHTML = pedidos.length; //El numero de items
@@ -73,3 +74,6 @@ function pedido(){
         }
     });
 }
+
+
+

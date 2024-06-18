@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator
+
 
 # Create your models here. 
 # Un modelo es una clase de Python, sirve para ordenar.
@@ -28,36 +30,25 @@ class Pedido(models.Model):
     cliente = models.ForeignKey(User, on_delete=models.CASCADE)
     mesa = models.PositiveSmallIntegerField(default=1, validators=[MaxValueValidator(30)])
     numero = models.CharField(max_length=90, unique=True)
-    cuenta = models.DecimalField(max_digits=12, decimal_places=2)
+    cuenta = models.DecimalField(max_digits=12, decimal_places=2, default=0, validators=[MinValueValidator(0)])
     date = models.DateTimeField(auto_now_add=True, blank=True)
     note = models.TextField(blank=True, null=True)
     estado = models.CharField(max_length=20, choices=[('activo', 'Activo'), ('finalizado', 'Finalizado')], default='activo')
-    descuento_aplicado = models.DecimalField(max_digits=12, decimal_places=2, default=0)  # Campo para almacenar el descuento aplicado
-
+    
+    
     def __str__(self):
         return f"Pedido #{self.numero} - Mesa: {self.mesa} - Estado: {self.estado}"
 
-    def aplicar_descuento(self, cantidad_minima, cantidad_maxima, porcentaje_descuento):
-        if cantidad_minima <= self.item_set.count() <= cantidad_maxima:
-            descuento = (self.cuenta * porcentaje_descuento) / 100
-            self.cuenta -= descuento
-            self.descuento_aplicado = descuento
-            self.save()
-            
     class Meta:
         ordering = ['-date'] #Se ordenaran por fecha
 
-
-# No podemos aniadir todos los items a Pedido pq no sabemos la cantidad de item que
-# va a pedir un cliente para ello se crea el modelo Item
-
+   
 class Item(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=120)
-    precio = models.DecimalField(max_digits=10, decimal_places = 2)
-    size   = models.CharField(max_length=90)
-    
-    
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    size = models.CharField(max_length=90)
+
 class Descuento(models.Model):
     nombre_descuento = models.CharField(max_length=100, default='')
     cantidad_minima = models.IntegerField(default=0)

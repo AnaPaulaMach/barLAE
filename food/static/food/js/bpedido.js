@@ -30,6 +30,7 @@ function addBebida(bid) { // hamburgues id = hid
     pedidos[carritoSize] = [nombre, size, precio];
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
 
+    precio = precio.replace(',', '.');
     total = Number(total) + Number(precio);
     localStorage.setItem('total', total);
 
@@ -63,6 +64,7 @@ function removeBebida(n){
     var pedidos = JSON.parse(localStorage.getItem('pedidos'));
     var total = localStorage.getItem('total');
 
+    pedidos[n][2] = pedidos[n][2].replace(',', '.');
     total = Number(total) - Number(pedidos[n][2]);
     pedidos.splice(n,1); // 1 el numero de items que queremos remover
 

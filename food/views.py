@@ -60,6 +60,7 @@ def pedido(request):
         request.session['pedido'] = request.POST.get('pedidos')  
         pedidos = json.loads(request.session['pedido'])
         request.session['cuenta'] = request.POST.get('cuenta')  
+          
         randomNum = randomOrderNumber(6)
 
         while Pedido.objects.filter(numero=randomNum).count() > 0:
@@ -70,6 +71,7 @@ def pedido(request):
                             numero=randomOrderNumber(6),
                             cuenta=float(request.session['cuenta']),
                             note=request.session['note'] )
+              
             pedido.save()
             request.session['pedidoNum'] = pedido.numero
             for articulo in pedidos:
@@ -80,6 +82,7 @@ def pedido(request):
                     size   = articulo[1],
                 )
                 item.save()
+         
 
     mesas = list(range(1, 31))  # Lista de numeros de mesa
     ctx = {'active_link':'pedido', 'mesas': mesas}

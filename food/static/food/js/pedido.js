@@ -2,6 +2,9 @@
 var pcarrito = document.querySelector('#pcarrito');
 var ptotal = document.querySelector('#ptotal');
 
+
+
+
 // add Hamburguesa
 function addHamburguesa(hid) { // hamburgues id = hid
     // get hamburguesa name
@@ -24,14 +27,22 @@ function addHamburguesa(hid) { // hamburgues id = hid
         pedidos = []; // Inicializar pedidos como un array vacío si es null
     }
     var total = localStorage.getItem('total');
-
+   
+    
+    
 
     // Saving item and total in localstorage
     var carritoSize = pedidos.length;
     pedidos[carritoSize] = [nombre, size, precio];
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
+    
+    
+    precio = precio.replace(',', '.');
 
+    
     total = Number(total) + Number(precio);
+    console.log(total);
+    
     localStorage.setItem('total', total);
 
     //Updating number of items in shopping Cart
@@ -64,6 +75,7 @@ function removeHamburguesa(n){
     var pedidos = JSON.parse(localStorage.getItem('pedidos'));
     var total = localStorage.getItem('total');
 
+    pedidos[n][2] = pedidos[n][2].replace(',', '.');
     total = Number(total) - Number(pedidos[n][2]);
     pedidos.splice(n,1); // 1 el numero de items que queremos remover
 

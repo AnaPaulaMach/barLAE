@@ -18,13 +18,15 @@ var pedidos = JSON.parse(localStorage.getItem('pedidos'));
 // json.parse convierte js en un array creo
 var total = localStorage.getItem('total');
 
+
+
 if (pedidos === null || pedidos === undefined){
     localStorage.setItem('pedidos', JSON.stringify([]));
     pedidos = JSON.parse(localStorage.getItem('pedidos'));
 }
 
 if (total === null || total === undefined){
-    localStorage.setItem('total', 0);
+    localStorage.setItem('total', 0.00);
     total = localStorage.getItem('total'); // Cambiar pedidos a total
 }
 
