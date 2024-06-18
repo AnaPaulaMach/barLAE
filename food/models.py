@@ -12,6 +12,7 @@ class Hamburguesa(models.Model):
     nombre  = models.CharField(max_length=120)
     precio1 = models.DecimalField(max_digits=10, decimal_places = 2) #2 precios 1 hamb grande otra chica
     precio2 = models.DecimalField(max_digits=10, decimal_places = 2)
+    descripcion = models.CharField(max_length=500, default='')
     hImagen = models.URLField()
 
 
@@ -19,6 +20,7 @@ class Bebida(models.Model):
     nombre  = models.CharField(max_length=120)
     precioC = models.DecimalField(max_digits=8, decimal_places = 2) #2 precios 1 hamb grande otra chica
     precioG = models.DecimalField(max_digits=8, decimal_places = 2)
+    descripcion = models.CharField(max_length=500, default='')
     bImagen = models.URLField() 
 # Creamos migrations en la terminal
 # Migrations permite convertir codigo de python en codigo sql

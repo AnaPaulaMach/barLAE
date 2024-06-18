@@ -32,7 +32,8 @@ function removeItem(n){
     //get para obtener valores
     var pedidos = JSON.parse(localStorage.getItem('pedidos'));
     var total = localStorage.getItem('total');
-
+    
+    pedidos[n][2] = pedidos[n][2].replace(',', '.');
     total = Number(total) - Number(pedidos[n][2]);
     pedidos.splice(n,1); // 1 el numero de items que queremos remover
     //Updating number of items in shopping Cart

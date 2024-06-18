@@ -6,12 +6,12 @@ from .models import Hamburguesa, Bebida, Pedido, Item, Descuento
 # Register your models here.
 
 class HamburguesaAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'precio1', 'precio2', 'hImagen') #lista de lo que queremos ver en la pag de admin
+    list_display = ('nombre', 'precio1', 'precio2', 'descripcion','hImagen' ) #lista de lo que queremos ver en la pag de admin
 
 admin.site.register(Hamburguesa, HamburguesaAdmin)
 
 class BebidaAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'precioC', 'precioG', 'bImagen') #lista de lo que queremos ver en la pag de admin
+    list_display = ('nombre', 'precioC', 'precioG', 'descripcion','bImagen' ) #lista de lo que queremos ver en la pag de admin
     
 
 admin.site.register(Bebida, BebidaAdmin) 

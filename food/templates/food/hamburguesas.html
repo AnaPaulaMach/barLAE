@@ -6,15 +6,16 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row ">
+        <div class="row">
             <div class="col-md-8 text-center">
                 <h2 class="title">Nuestras Hamburguesas</h2>
                 <div class="row">
                     {% for hamburguesa in hamburguesas %}
-                    <div class="col-md-4 p-4"> <!-- cambio md-4 de eso depende cuantas columnas de productos son -->
-                        <div class="hamburguesa-item">
-                            <img class="picture" src="{{ hamburguesa.hImagen }}" alt="{{ hamburguesa.nombre }}">
+                    <div class="col-md-4 p-4">
+                        <div class="hamburguesa-item border p-3 rounded"> <!-- Añadido border y rounded para el recuadro -->
+                            <img class="picture img-fluid" src="{{ hamburguesa.hImagen }}" alt="{{ hamburguesa.nombre }}">
                             <h4 class="pt-3" id="ham{{ hamburguesa.id }}">{{ hamburguesa.nombre }}</h4>
+                            <p>{{ hamburguesa.descripcion }}</p> <!-- Añadido la descripción -->
                             <div class="form-check-inline">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="radio" name="hamburguesa{{ hamburguesa.id }}" value="{{ hamburguesa.precio1 }}" checked>
@@ -36,13 +37,13 @@
                 </div>
             </div>
             <div class="col-md-4 pedidos">
-                <div class="bg-dark p-4 rounded text-light"> <!-- fondo color -->
-                <h2 class="text-center">Pedido</h2> <!-- Para que vea el pedido a la derecha-->
-                <ul id="pcarrito"></ul>
-                <h4 class="text-right" id="ptotal">Total: $0</h4>
-            </div>
+                <div class="bg-dark p-4 rounded text-light">
+                    <h2 class="text-center">Pedido</h2>
+                    <ul id="pcarrito"></ul>
+                    <h4 class="text-right" id="ptotal">Total: $0</h4>
+                </div>
             </div>
         </div>
     </div>
-    <script src="{% static 'food/js/pedido.js' %}"></script> <!-- order = pedido -->
+    <script src="{% static 'food/js/pedido.js' %}"></script>
 {% endblock %}

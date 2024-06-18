@@ -75,13 +75,21 @@ def pedido(request):
             pedido.save()
             request.session['pedidoNum'] = pedido.numero
             for articulo in pedidos:
-                item = Item(
-                    pedido = pedido,
-                    nombre = articulo[0],
-                    precio = float(articulo[2]),
-                    size   = articulo[1],
-                )
-                item.save()
+                try:
+                    precio_str = articulo[2].replace(',', '.')
+                    precio = float(precio_str)
+                    item = Item(
+                        pedido=pedido,
+                        nombre=articulo[0],
+                        precio=precio,
+                        size=articulo[1],
+                    )
+                    print("Procesando artículo:", articulo)
+                    print("Precio del artículo:", item.precio)
+                    item.save()
+                    print("Artículo guardado:", item)
+                except ValueError as e:
+                    print(f"Error al convertir el precio de '{articulo[2]}': {e}")
          
 
     mesas = list(range(1, 31))  # Lista de numeros de mesa
