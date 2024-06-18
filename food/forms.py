@@ -12,6 +12,7 @@ class NewUserForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
 
+
 class DescuentoForm(forms.ModelForm):
     # Definir una lista de opciones para los porcentajes
     PORCENTAJES = [(i, f"{i}%") for i in range(5, 101, 5)]  # Generar una lista de tuplas (valor, etiqueta)

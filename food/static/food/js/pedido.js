@@ -25,6 +25,7 @@ function addHamburguesa(hid) { // hamburgues id = hid
     }
     var total = localStorage.getItem('total');
 
+
     // Saving item and total in localstorage
     var carritoSize = pedidos.length;
     pedidos[carritoSize] = [nombre, size, precio];

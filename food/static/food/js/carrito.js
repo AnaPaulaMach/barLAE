@@ -73,6 +73,3 @@ function pedido(){
         }
     });
 }
-
-
-

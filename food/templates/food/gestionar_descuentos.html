@@ -14,36 +14,38 @@
                 <button type="submit" class="btn btn-primary">Agregar Descuento</button>
             </form>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 d-flex flex-column">
             <h2>Descuentos Actuales</h2>
-            <ul>
+            <ul class="grid grid-cols-1 gap-2">
                 {% for descuento in descuentos %}
-                <li>
-                    {{ descuento.porcentaje_descuento }}% de descuento - 
-                    {% if descuento.activo %}
-                        Activo 
-                        <form method="post" action="{% url 'food:desactivar_descuento' descuento.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">Desactivar</button>
-                        </form>
-                        <form method="post" action="{% url 'food:eliminar_descuento' descuento.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
-                    {% else %}
-                        Inactivo
-                        <form method="post" action="{% url 'food:activar_descuento' descuento.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-success btn-sm">Activar</button>
-                        </form>
-                        <form method="post" action="{% url 'food:eliminar_descuento' descuento.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
-                    {% endif %}
-                </li>
-                {% empty %}
-                <li>No hay descuentos disponibles.</li>
+                    <li class="p-2 border rounded bg-light">
+                        <div class="d-flex flex-column align-items-start">
+                            <div>
+                                {{ descuento.nombre_descuento }}<br>
+                                {{ descuento.porcentaje_descuento }}% de descuento
+                            </div>
+                            <div class="d-flex justify-content-between align-items-start">
+                                {% if descuento.activo %}
+                                    Activo
+                                    <form method="post" action="{% url 'food:desactivar_descuento' descuento.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="des-boton btn-danger btn-sm">Desactivar</button>
+                                    </form>
+                                {% else %}
+                                    Inactivo
+                                    <form method="post" action="{% url 'food:activar_descuento' descuento.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class=" btn-success btn-sm act-boton">Activar </button>
+                                    </form>
+                                {% endif %}
+                                <a href="{% url 'food:eliminar_descuento' descuento.id %}" class="btn btn-danger btn-sm delete-icon">
+                                    <img src="https://img.icons8.com/?size=100&id=99961&format=png&color=FFFFFF" alt="Eliminar">
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    {% empty %}
+                    <li class="p-2 border rounded bg-light">No hay descuentos disponibles.</li>
                 {% endfor %}
             </ul>
         </div>

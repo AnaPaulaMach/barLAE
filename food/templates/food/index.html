@@ -1,6 +1,5 @@
 {% extends 'food/base.html' %}
 
-<!-- Este sería el nombre de la pestaña -->
 {% block title %}Inicio{% endblock %}
 
 {% load static %}
@@ -8,6 +7,9 @@
 {% block content %}
 <div class="container my-5">
     <h1 class="text-center">Bienvenido a LAE Urban Burgers</h1>
+    
+
+    <!-- Secciones principales -->
     <div class="row mt-5">
         <div class="col-md-4 mb-4">
             <div class="card text-center shadow-card">
@@ -46,8 +48,46 @@
             </div>
         </div>
     </div>
+
+     <!-- Noticias y Actualizaciones -->
+     <div class="row mt-5">
+        <div class="col-md-12">
+            <h2 class="text-center">Últimas Noticias</h2>
+            <p class="text-center">Mantente al día con nuestras últimas novedades y eventos especiales.</p>
+            <!-- Ejemplo de noticia -->
+            <div class="card mb-4 shadow-card">
+                <div class="card-body">
+                    <h5 class="card-title">Nueva Hamburguesa del Mes</h5>
+                    <p class="card-text">Prueba nuestra nueva hamburguesa con ingredientes frescos y locales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonios -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2 class="text-center">Testimonios de Clientes</h2>
+            <!-- Ejemplo de testimonio -->
+            <div class="card mb-4 shadow-card">
+                <div class="card-body">
+                    <p class="card-text">"¡Las mejores hamburguesas que he probado! Definitivamente volveré."</p>
+                    <footer class="blockquote-footer">Juan Pérez</footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contacto y ubicación -->
+    <div class="row mt-5">
+        <div class="col-md-12 text-center">
+            <h2>Contáctanos</h2>
+            <p>Email: contacto@laeurbanburgers.com | Teléfono: +54 11 1234-5678</p>
+            <h5>Encuéntranos en:</h5>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2305.6882013692775!2d-64.25225698829212!3d-27.801885766654284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943b4df913f0ac29%3A0x6d7da993ed25f896!2sUniversidad%20Nacional%20de%20Santiago%20del%20Estero!5e0!3m2!1ses!2sar!4v1718685767965!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
 </div>
 <!-- Agrega la imagen del logo -->
 <img src="https://res.cloudinary.com/dwrlz7fdi/image/upload/v1718522832/WhatsApp_Image_2024-06-11_at_11.22.10_PM_preview_rev_1_wee5ii.png" alt="Logo" class="logoMenu">
 {% endblock %}
-

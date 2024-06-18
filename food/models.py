@@ -59,7 +59,7 @@ class Item(models.Model):
     
     
 class Descuento(models.Model):
-    nombre = models.CharField(max_length=100, default='')
+    nombre_descuento = models.CharField(max_length=100, default='')
     cantidad_minima = models.IntegerField(default=0)
     cantidad_maxima = models.IntegerField(default=0)
     porcentaje_descuento = models.DecimalField(max_digits=5, decimal_places=2)
