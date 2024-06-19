@@ -212,3 +212,15 @@ li{
     margin-right: -83px;
     margin-left: 150px; /* Add margin-left property */
 }
+
+/* Añadir este código a tu archivo CSS o en la etiqueta <style> de tu plantilla */
+.btn-pedido-carrito {
+    background-color: #33b5e5; /* Cambia este color según tu preferencia */
+    color: white;
+    border: none;
+}
+
+.btn-pedido-carrito:hover {
+    background-color: #e04e2b; /* Color cuando el botón está en hover */
+    color: white;
+}
