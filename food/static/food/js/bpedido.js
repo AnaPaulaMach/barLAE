@@ -1,31 +1,26 @@
-
 var bcarrito = document.querySelector('#bcarrito');
 var btotal = document.querySelector('#btotal');
 
-// add Hamburguesa
-function addBebida(bid) { // hamburgues id = hid
-    // get hamburguesa name
-    var bebidaId = '#beb' + bid; // no confundir id html e id de la BD
+// Añadir bebida al carrito
+function addBebida(bid) {
+    var bebidaId = '#beb' + bid;
     var nombre = document.querySelector(bebidaId).innerHTML;
-    // get hamburguesa price
     var radio = '[name="bebida' + bid + '"]';
     var pre = document.querySelectorAll(radio);
     var size, precio;
+
     if (pre[0].checked) {
         precio = pre[0].value;
-        size = 'C'; // Una Hamburguesa/Carne
+        size = 'C';
     } else {
         precio = pre[1].value;
-        size = 'G'; // Dos Hamburguesa/Carne
+        size = 'G';
     }
 
-    var pedidos = JSON.parse(localStorage.getItem('pedidos'));
-    if (!pedidos) { // Verificar si pedidos es null o undefined
-        pedidos = []; // Inicializar pedidos como un array vacío si es null
-    }
-    var total = localStorage.getItem('total');
+    var pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    var total = localStorage.getItem('total') || 0;
 
-    // Saving item and total in localstorage
+    // Guardar el ítem y el total en localStorage
     var carritoSize = pedidos.length;
     pedidos[carritoSize] = [nombre, size, precio];
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
@@ -34,18 +29,18 @@ function addBebida(bid) { // hamburgues id = hid
     total = Number(total) + Number(precio);
     localStorage.setItem('total', total);
 
-    //Updating number of items in shopping Cart
+    // Actualizar número de ítems en el carrito
     var carrito = document.querySelector("#carrito");
-    carrito.innerHTML = pedidos.length; //El numero de items
+    carrito.innerHTML = pedidos.length;
 
-    butto = '<div class="del" onclick="removeBebida(' + carritoSize +')"></div>';
+    var butto = '<div class="del" onclick="removeBebida(' + carritoSize + ')"></div>';
     btotal.innerHTML = 'Total: $' + total;
-    bcarrito.innerHTML += '<li class="cart-item">' + nombre + ' ' + size + ': $' + precio + butto +'</li>';
+    bcarrito.innerHTML += '<li class="cart-item">' + nombre + ' ' + size + ': $' + precio + butto + '</li>';
 }
 
 function bshoppingCart() {
-    var pedidos = JSON.parse(localStorage.getItem('pedidos'));
-    var total = localStorage.getItem('total');
+    var pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    var total = localStorage.getItem('total') || 0;
     var carritoSize = pedidos.length;
     bcarrito.innerHTML = '';
     for (let i = 0; i < carritoSize; i++) {
@@ -55,24 +50,20 @@ function bshoppingCart() {
     btotal.innerHTML = 'Total: $' + total;
 }
 
-
 bshoppingCart();
 
-// Eliminar Bebida, argumento numero el indice de la bebida
-function removeBebida(n){
-    //get para obtener valores
-    var pedidos = JSON.parse(localStorage.getItem('pedidos'));
-    var total = localStorage.getItem('total');
+// Eliminar bebida del carrito
+function removeBebida(n) {
+    var pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    var total = localStorage.getItem('total') || 0;
 
     pedidos[n][2] = pedidos[n][2].replace(',', '.');
     total = Number(total) - Number(pedidos[n][2]);
-    pedidos.splice(n,1); // 1 el numero de items que queremos remover
+    pedidos.splice(n, 1);
 
-    //Updating number of items in shopping Cart
     var carrito = document.querySelector("#carrito");
-    carrito.innerHTML = pedidos.length; //El numero de items
+    carrito.innerHTML = pedidos.length;
 
-    //set para guardar valores
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
     localStorage.setItem('total', total);
 

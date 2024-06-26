@@ -5,7 +5,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid my-5">
+<div class="container-fluid">
   <div class="row">
     <div class="col-lg-8 text-center mb-4">
       <h2 class="title">Nuestras Bebidas</h2>
@@ -36,16 +36,15 @@
       </div>
     </div>
     <div class="col-md-4 pedidos">
-      <div class="bg-dark p-4 rounded text-light"> 
-        <h2 class="text-center">Pedido</h2> 
-        <ul id="bcarrito" class="list-group list-group-flush"></ul> 
-        <div class="card-footer">
-          <h4 class="text-right" id="btotal">Total: $0</h4>
+      <div class="bg-dark p-4 rounded text-light">
+          <h2 class="text-center">Pedido</h2>
+          <ul id="bcarrito"></ul> <!-- Usando #bcarrito en lugar de #pcarrito -->
+          <h4 class="text-right" id="btotal">Total: $0</h4> <!-- Usando #btotal en lugar de #ptotal -->
           <a href="{% url 'food:pedido' %}" class="btn btn-pedido-carrito mt-3 w-100">Ir al Carrito</a>
         </div>
       </div>
     </div>
   </div>
 </div>
-<script src="{% static 'food/js/bpedido.js' %}"></script>
+<script src="{% static 'food/js/bpedido.js' %}"></script> <!-- Asegúrate de que la ruta al archivo js sea correcta -->
 {% endblock %}

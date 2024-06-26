@@ -224,3 +224,53 @@ li{
     background-color: #e04e2b; /* Color cuando el botón está en hover */
     color: white;
 }
+
+/* Añadir esto a tu archivo CSS */
+
+#pedido-items .item-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#pedido-items .item-name {
+    flex: 1;
+    word-break: break-word;
+}
+
+#pedido-items .item-size,
+#pedido-items .item-price {
+    width: 100px;
+    text-align: center;
+}
+
+#pedido-items .item-remove {
+    width: 50px;
+    text-align: center;
+}
+
+.btn-remove-item {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.btn-remove-item:hover {
+    background-color: #ff3333;
+}
+
+#pedido-items .pedido-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#pedido-items .pedido-item > div {
+    flex: 1;
+}
+
+#pedido-items .pedido-item .remove-btn {
+    flex: 0 0 auto;
+}

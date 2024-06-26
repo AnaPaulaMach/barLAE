@@ -4,61 +4,52 @@
 
 {% load static %}
 
-{% block content %} <!-- usa boots -->
-
-<div class="container-fluid m-4">
+{% block content %} <div class="container-fluid my-4">
     {% if user.is_authenticated %}
-        <h2>Bienvenido {{ user.username }}</h2>
+        <h2 class="text-center mb-4">Bienvenido, {{ user.username }}</h2>
     {% endif %}
     <div class="row">
-        <div class="col-md-6 text-center">
+        <div class="col-md-7 text-center">
             <h2>Pedido</h2>
-            <div class="row">
-                <div class="col-md-3" id="nombre">
-                    <h3>Nombre</h3>
+            <div class="row font-weight-bold mb-2">
+                <div class="col-4" id="nombre">
+                    <h4>Nombre</h4>
                 </div>
-                <div class="col-md-3" id="tamaño">
-                    <h3>Tamaño</h3>
+                <div class="col-3" id="tamaño">
+                    <h4>Tamaño</h4>
                 </div>
-                <div class="col-md-3" id="precio">
-                    <h3>Precio</h3>
+                <div class="col-3" id="precio">
+                    <h4>Precio</h4>
                 </div>
-                <div class="col-md-1" id="rm"> <!-- rm remove buttons -->
-
-                </div>
+                <div class="col-2" id="rm">
+                    </div>
             </div>
-            <h2 id="total">Total:</h2>
+            <div id="pedido-items">
+                </div>
+            <h2 id="total" class="mt-4">Total:</h2>
         </div>
-        <div class="col-md-5 mt-4"> <!-- aqui va estar lo del comentario -->
-            <h2 class="mb-4">Comentario</h2>
-            <textarea name="Comentario" id="Comentario" cols="40" rows="5"></textarea>  
-
-            {% if user.is_authenticated %} <!-- Solo si inicio sesion se muestra boton pedir -->
-                
-            <div class="ml-auto m-4">
-                <button type="submit" class="btn-success" onclick="pedido()">Enviar</button>
-            </div>
-
-            <div class="col-md-1  mt-4">
-                <h2 class="mb-4">Seleccione la mesa</h2>
-                <select id="mesa-input" name="mesa" class="form-select">
-                    <option value="">Seleccione una mesa</option>
-                    {% for mesa_num in mesas %}  <!-- en views pasa la cant de mesas -->
-                        <option value="{{ mesa_num }}">{{ mesa_num }}</option>
-                    {% endfor %}
-                </select>
-            </div>  
-
+        <div class="col-md-5 mt-4">
+            <h2>Comentario</h2>
+            <textarea name="Comentario" id="Comentario" cols="40" rows="5" class="form-control mb-4"></textarea>
+            {% if user.is_authenticated %}
+                <div class="mb-4">
+                    <h2 class="mb-4">Seleccione la mesa</h2>
+                    <select id="mesa-input" name="mesa" class="form-select mb-4">
+                        <option value="">Seleccione una mesa</option>
+                        {% for mesa_num in mesas %}
+                            <option value="{{ mesa_num }}">{{ mesa_num }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success w-100" onclick="pedido()">Enviar</button>
             {% else %}
-
-            <div class="ml-auto m-4">
-                <a href="{% url 'food:login' %}">Ingresar</a>
-            </div>
-
+                <div class="mt-4 text-center">
+                    <a href="{% url 'food:login' %}" class="btn btn-primary">Ingresar</a>
+                </div>
             {% endif %}
         </div>
-        
     </div>
 </div>
-<script src="{% static 'food/js/carrito.js' %}"></script> 
+
+<script src="{% static 'food/js/carrito.js' %}"></script>
 {% endblock %}

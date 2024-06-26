@@ -8,17 +8,36 @@ var rm = document.querySelector("#rm"); // remove buttons
 function shoppingCart() {
     var pedidos = JSON.parse(localStorage.getItem('pedidos'));
     var total = localStorage.getItem('total');
-    console.log(total);
     var carritoSize = pedidos.length;
 
     nombre.innerHTML = '<h3>Nombre</h3>';
     tamaño.innerHTML = '<h3>Tamaño</h3>';
     precio.innerHTML = '<h3>Precio</h3>';
-    rm.innerHTML = '<h3><br></h3>';
+    rm.innerHTML = '';
 
 
     for (let i = 0; i < carritoSize; i++) {
-        rm.innerHTML += '<h4><button class="btn-danger" onclick="removeItem(' + i + ')"></button></h4>';
+        // Create a container for each item with name and remove button
+    var itemContainer = document.createElement('div');
+    itemContainer.classList.add('pedido-item');  // Add a class for styling
+
+    var removeButton = document.createElement('button');
+    removeButton.classList.add('btn-danger');
+    removeButton.textContent = 'X';
+    removeButton.onclick = function() { removeItem(i); };  // Set onclick function
+
+    var itemName = document.createElement('h4');
+    itemName.textContent = pedidos[i][0];
+
+    // Ensure button and name are aligned vertically
+    itemContainer.style.display = 'flex';  // Use flexbox for alignment
+    itemContainer.style.alignItems = 'center';  // Center items vertically
+
+    itemContainer.appendChild(removeButton);
+    itemContainer.appendChild(itemName);
+
+    rm.appendChild(itemContainer); // Append the container to rm
+
         nombre.innerHTML += '<h4>' + pedidos[i][0] + '</h4>';
         tamaño.innerHTML += '<h4>' + pedidos[i][1] + '</h4>';
         precio.innerHTML += '<h4>' + pedidos[i][2] + '</h4>';

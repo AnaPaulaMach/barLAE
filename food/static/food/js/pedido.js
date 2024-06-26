@@ -2,9 +2,6 @@
 var pcarrito = document.querySelector('#pcarrito');
 var ptotal = document.querySelector('#ptotal');
 
-
-
-
 // add Hamburguesa
 function addHamburguesa(hid) { // hamburgues id = hid
     // get hamburguesa name
