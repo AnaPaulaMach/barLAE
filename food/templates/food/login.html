@@ -11,7 +11,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6 p-5 bg-dark text-light text-center">
                 <h3>Ingresar</h3>
-                <a href="{% url 'food:signup' %}" class="p-2">Registrarse</a>
+                <p>¿No tienes cuenta? <a href="{% url 'food:signup' %}" class="p-2">Registrarse</a></p>
                 <form method="POST" class="pt-2">
                     {% csrf_token %}    <!-- seguridad -->
 
@@ -24,7 +24,7 @@
                     <button type="submit" class="btn-info">Ingresar</button>
                     {% if messages %}
                         <ul class="pt-2 text-center">
-                            {% for msg in messages%}
+                            {% for msg in messages %}
                             <li style="color: red;">{{ msg }}</li>
                             {% endfor %}
                         </ul>
