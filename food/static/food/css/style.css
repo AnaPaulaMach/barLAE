@@ -199,6 +199,7 @@ li{
     margin-top: 4px; /* Add a 5px margin from the top */
 }
 
+
 .act-boton {
     width: 100%;
     margin-top: 30px;
@@ -225,12 +226,12 @@ li{
     color: white;
 }
 
-/* Añadir esto a tu archivo CSS */
+
 
 #pedido-items .item-row {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 200px; /* Increase spacing */
 }
 
 #pedido-items .item-name {
@@ -265,6 +266,8 @@ li{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 10px 0; /* Add margin top and bottom */
+    margin-top: 20px; /* Additional space below each item */
 }
 
 #pedido-items .pedido-item > div {
@@ -273,4 +276,54 @@ li{
 
 #pedido-items .pedido-item .remove-btn {
     flex: 0 0 auto;
+}
+
+
+
+ .btn-danger2 {
+    /* Add your desired styles here */
+    background-color: #d9534f; /* Example: Reddish color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 2px 10px;
+    cursor: pointer; /* Indicate clickable behavior */
+    height: 30px;
+    width: auto;
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Align vertically */
+    align-items: center; /* Align to start (left) */
+    margin-bottom: -3px; /* Reduce el margen inferior */
+}
+
+.pedido-item:first-child .btn-danger2 {
+    margin-top: 41px; /* Añade margen superior al primer botón */
+}
+
+
+.btn-successP.custom-btn {
+    width: 300px; /* Adjust width as desired */
+    height: 60px; /* Adjust height as desired */
+    background-color: #28a745; /* Bootstrap's green color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px; /* Adjust font size if needed */
+    margin: 30px auto; /* Center the button horizontally */
+    cursor: pointer; /* Indicate clickable behavior */
+      /* Other styles... */
+      display: inline-block; /* Display as inline-block */
+      align-items: center; /* Not necessary here (for vertical alignment) */
+      /* Other styles... */
+  }
+ 
+  .error-container {
+    display: none;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
 }

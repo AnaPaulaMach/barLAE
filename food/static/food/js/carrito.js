@@ -1,13 +1,12 @@
 var nombre = document.querySelector("#nombre");
 var tamaño = document.querySelector("#tamaño");
 var precio = document.querySelector("#precio");
-var cuenta = document.querySelector("#total"); //Pq ya existe otra llamada total en shoppingcart
-var rm = document.querySelector("#rm"); // remove buttons
-
+var cuenta = document.querySelector("#total");
+var rm = document.querySelector("#rm");
 
 function shoppingCart() {
-    var pedidos = JSON.parse(localStorage.getItem('pedidos'));
-    var total = localStorage.getItem('total');
+    var pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    var total = localStorage.getItem('total') || 0;
     var carritoSize = pedidos.length;
 
     nombre.innerHTML = '<h3>Nombre</h3>';
@@ -15,28 +14,17 @@ function shoppingCart() {
     precio.innerHTML = '<h3>Precio</h3>';
     rm.innerHTML = '';
 
-
     for (let i = 0; i < carritoSize; i++) {
-        // Create a container for each item with name and remove button
-    var itemContainer = document.createElement('div');
-    itemContainer.classList.add('pedido-item');  // Add a class for styling
+        var itemContainer = document.createElement('div');
+        itemContainer.classList.add('pedido-item');
+        
+        var removeButton = document.createElement('button');
+        removeButton.classList.add('btn', 'btn-danger2');
+        removeButton.textContent = 'X';
+        removeButton.onclick = function() { removeItem(i); };
 
-    var removeButton = document.createElement('button');
-    removeButton.classList.add('btn-danger');
-    removeButton.textContent = 'X';
-    removeButton.onclick = function() { removeItem(i); };  // Set onclick function
-
-    var itemName = document.createElement('h4');
-    itemName.textContent = pedidos[i][0];
-
-    // Ensure button and name are aligned vertically
-    itemContainer.style.display = 'flex';  // Use flexbox for alignment
-    itemContainer.style.alignItems = 'center';  // Center items vertically
-
-    itemContainer.appendChild(removeButton);
-    itemContainer.appendChild(itemName);
-
-    rm.appendChild(itemContainer); // Append the container to rm
+        itemContainer.appendChild(removeButton);
+        rm.appendChild(itemContainer);
 
         nombre.innerHTML += '<h4>' + pedidos[i][0] + '</h4>';
         tamaño.innerHTML += '<h4>' + pedidos[i][1] + '</h4>';
@@ -47,53 +35,63 @@ function shoppingCart() {
 
 shoppingCart();
 
-function removeItem(n){
-    //get para obtener valores
-    var pedidos = JSON.parse(localStorage.getItem('pedidos'));
-    var total = localStorage.getItem('total');
-    
+function removeItem(n) {
+    var pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    var total = localStorage.getItem('total') || 0;
+
     pedidos[n][2] = pedidos[n][2].replace(',', '.');
     total = Number(total) - Number(pedidos[n][2]);
-    pedidos.splice(n,1); // 1 el numero de items que queremos remover
-    //Updating number of items in shopping Cart
-    var carrito = document.querySelector("#carrito");
-    carrito.innerHTML = pedidos.length; //El numero de items
+    pedidos.splice(n, 1);
 
-    //set para guardar valores
+    var carrito = document.querySelector("#carrito");
+    carrito.innerHTML = pedidos.length;
+
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
     localStorage.setItem('total', total);
 
     shoppingCart();
 }
 
-//Ajax
-
 var note = document.querySelector('#Comentario');
 
-function pedido(){
+function pedido() {
     var msg = note.value;
-    var mesaNum = document.getElementById('mesa-input').value; // Obtener el número de mesa seleccionado
+    var mesaNum = document.getElementById('mesa-input').value;
+    var total = parseFloat(localStorage.getItem('total')) || 0;
+
+    var errorContainer = document.querySelector('.error-container');
+    errorContainer.style.display = 'none';  // Ocultar cualquier alerta previa
+    
+    if (!mesaNum) {
+        errorContainer.innerHTML = 'Por favor seleccione una mesa.';
+        errorContainer.style.display = 'block';
+        return;
+    }
+
+    if (total === 0) {
+        errorContainer.innerHTML = 'No se puede realizar un pedido con un total de 0.00.';
+        errorContainer.style.display = 'block';
+        return;
+    }
+
     var pedidos = localStorage.getItem('pedidos');
-    var total = localStorage.getItem('total');
 
     var ur = "/food/pedido/";
-    var pedidoData = {};
-    pedidoData['pedidos'] = pedidos;
-    pedidoData['note'] = msg;
-    pedidoData['cuenta'] = total;
-    pedidoData['mesa'] = mesaNum; // Agregar el número de mesa al objeto de datos del pedido
+    var pedidoData = {
+        'pedidos': pedidos,
+        'note': msg,
+        'cuenta': total,
+        'mesa': mesaNum
+    };
 
     $.ajax({
         url: ur,
         type: "POST",
         data: pedidoData,
-        success: function(data){
+        success: function(data) {
             window.location.replace('/food/exito/');
             localStorage.setItem('pedidos', JSON.stringify([]));
             localStorage.setItem('total', 0);
         }
     });
 }
-
-
-

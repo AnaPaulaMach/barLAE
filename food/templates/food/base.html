@@ -47,7 +47,7 @@
         <ul class="navbar-nav ml-auto"> <!-- margin left que es una boostrap class para poner el carrito a la derecha -->
           {% if user.is_authenticated %} <!-- si inicio sesion -->
           <li class="nav-item mt-2">
-            <h5 class="text-light pt-3 pr-4">Bienvenido {{ user.username }}</h5>
+            <h5 class="text-light pt-3 pr-4">{{ user.username }}</h5>
           </li>
           {% endif %}
           <li class="nav-item mt-2">

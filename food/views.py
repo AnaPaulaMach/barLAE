@@ -52,26 +52,29 @@ def bebidas(request):
     return render(request, 'food/bebidas.html', ctx)
 
 
+
 @csrf_exempt
 def pedido(request):
     request.session.set_expiry(0)
-    if request.headers.get('X-Requested-With') == 'XMLHttpRequest': #is_ajax ya no se usa
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest': # is_ajax ya no se usa
         request.session['note'] = request.POST.get('note')  # note es el comentario
-        request.session['pedido'] = request.POST.get('pedidos')  
+        request.session['pedido'] = request.POST.get('pedidos')
         pedidos = json.loads(request.session['pedido'])
-        request.session['cuenta'] = request.POST.get('cuenta')  
-          
-        randomNum = randomOrderNumber(6)
+        request.session['cuenta'] = request.POST.get('cuenta')
+        mesa = request.POST.get('mesa')  # Obtener el número de mesa
 
+        randomNum = randomOrderNumber(6)
         while Pedido.objects.filter(numero=randomNum).count() > 0:
             randomNum = randomOrderNumber(6)
 
         if request.user.is_authenticated:
-            pedido = Pedido(cliente=request.user,
-                            numero=randomOrderNumber(6),
-                            cuenta=float(request.session['cuenta']),
-                            note=request.session['note'] )
-              
+            pedido = Pedido(
+                cliente=request.user,
+                numero=randomNum,
+                cuenta=float(request.session['cuenta']),
+                note=request.session['note'],
+                mesa=mesa  # Guardar el número de mesa
+            )
             pedido.save()
             request.session['pedidoNum'] = pedido.numero
             for articulo in pedidos:
@@ -84,17 +87,15 @@ def pedido(request):
                         precio=precio,
                         size=articulo[1],
                     )
-                    print("Procesando artículo:", articulo)
-                    print("Precio del artículo:", item.precio)
                     item.save()
-                    print("Artículo guardado:", item)
                 except ValueError as e:
                     print(f"Error al convertir el precio de '{articulo[2]}': {e}")
-         
 
     mesas = list(range(1, 31))  # Lista de numeros de mesa
-    ctx = {'active_link':'pedido', 'mesas': mesas}
+    ctx = {'active_link': 'pedido', 'mesas': mesas}
     return render(request, 'food/pedido.html', ctx)
+
+
 
 #session para guardar info que son similares a local storage
 # son diccionarios , tienen expire time
