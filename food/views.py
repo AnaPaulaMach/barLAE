@@ -182,7 +182,7 @@ def gestionar_descuentos(request):
         form = DescuentoForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Descuento agregado exitosamente')
+            
             return redirect('food:gestionar_descuentos')
     else:
         form = DescuentoForm()

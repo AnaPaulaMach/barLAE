@@ -47,6 +47,8 @@ function removeItem(n) {
     carrito.innerHTML = pedidos.length;
 
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
+    // Descripción: Este código convierte el objeto pedidos a una cadena JSON y la almacena en localStorage del navegador bajo la clave 'pedidos'.
+    //Función: Almacenar datos en el navegador para que puedan ser recuperados y utilizados en futuras sesiones del usuario.
     localStorage.setItem('total', total);
 
     shoppingCart();
@@ -94,4 +96,5 @@ function pedido() {
             localStorage.setItem('total', 0);
         }
     });
+    //Aqui envio datos en formato JSON
 }
