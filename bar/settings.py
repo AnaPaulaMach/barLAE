@@ -25,10 +25,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$ov=ea*lpfn3rco+8&ehd-dzla*nl9s0gqpn!p&s(5spw1z^8s'
 
 # SECURITY WARNING: don't run with debug turned on in production! V16
-DEBUG = True
+DEBUG = False
 
-#ALLOWED_HOSTS = ['analae.pythonanywhere.com']
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','analae.pythonanywhere.com']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'barrea.pps.home.zonadirecta.local',
+    '172.20.21.3',
+    '172.20.22.20',
+]
 
 
 # Application definition
@@ -121,6 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
