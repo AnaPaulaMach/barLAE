@@ -25,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$ov=ea*lpfn3rco+8&ehd-dzla*nl9s0gqpn!p&s(5spw1z^8s'
 
 # SECURITY WARNING: don't run with debug turned on in production! V16
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'barrea.pps.home.zonadirecta.local',
+    'barlae.somospps.com',
     '172.20.21.3',
     '172.20.22.20',
 ]
@@ -138,7 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-STATIC_ROOT = '/home/AnaLAE/barLAE/staticfiles/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 #Desuso pq usamos pyhtonanywhere no heroku
